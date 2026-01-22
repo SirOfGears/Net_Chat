@@ -1,0 +1,80 @@
+início desenvolvimento: quinta 16/01/2025(manhã).
+
+v0.1: 
+Tela de fundo branca, localhost, canais infinitos por sockets, funcionalidade de nome e não salvar mensagens.
+
+v0.2:
+Tela de fundo preta, bordas, caixa e mensagens, exibir o IP e o canal que alguém se conectou no console que iniciou o servidor.
+
+17/01/2025(manhã) 
+
+v0.3:
+Texto em vermelho, capacidade de um adm com nome específico poder usar um comando para exiibir o IP dos participantes do canal no chat, ao invés de apenas no console. -> abraxas -> xip
+Opção de enviar arquivos de até 10mb. 
+
+21/01/2025:
+alguns avanços na questão de não enviar arquivos. Consegui identificar que o problema realmente estava no app.py. Não tinha um comando ou uma rota sobre o envio de arquivos.
+Alguns avanços no código, mas ainda não está enviando.
+
+16/03/2025:
+
+v.0.42:
+\-> modificação de metódo de entrada, será criado um atalho portátil pra abrir o navegador automaticamente no fórum.
+- Seção de regras na página inicial pra eu pelo menos fingir que me importo com a forma que será usado, em outras palavras, vou colocar só pra tirar o meu da reta e fazer os usuários fingirem que leram.
+- Reestruturação total do código de envio de imagens/arquivos. Agora não fica mais salvo em lugar nenhum, apenas codificado em base 64 e enviado direto ao chat, reduzindo o peso do código fonte do servidor todo e tbm deixando disponível apenas a quem estiver no chat, reduzindo riscos tbm
+
+
+25/11/2025:
+
+planos para a v.0.45(fazer até QUINTA):
+-> colocar o nome(NetChat) nos menus;(parcialmente feito, já que não tem investimento AINDA, n tem necessidade de menus grandes e complexos)
+- Tirar a parte q fala dos pcs dos laboratórios;(feito)
+- Tirar a parte q fala q n pode divulgação de dados confidenciais;(feito)
+- Implementar(ou tentar) a questão de mudança de tema;
+- Implementar a aba "Eternidade" com 3 canais exemplo;
+- Colocar online.(feito pelo Ngrok)
+
+26/11/2025:
+v0.47
+
+Cabecalho com “NetChat” centralizado.
+Mudança de tema funcionando.
+Upload base64 funcionando.
+Mensagem inicial restaurada.
+Chat normal restaurado.
+Aba Eternidade criada com:
+Canal 1 → PDFs (Stolas)
+Canal 2 → Fotos (Asmodeus)
+Canal 3 → Receitas (Belzebub)
+CSS reorganizado e reintegrado ao Flask.
+Botão de configurações de tema restaurado.
+Comando global !torre adicionado:
+Desconecta todos.
+Limpa o chat.
+Reinicia a sala.
+
+v0.49:
+- conseguir enviar figurinhas;
+- revisar e ver se existe chance de otimização do código.
+
+v0.51:
+- Capacidade de Enviar figurinhas;
+- Reestruturação completa do chat.html e app.py;
+- Revisão completa dos códigos e otimização;
+
+v0.52: (01/12/2025)
+- tentei consertar o ngc de tamanho no celular;
+- erros e erros e a caralha de um "room.html" q porra é essa? pq isso é necessário? Do nada surgiu sapora, fds, vou fazer.
+- o room.html é o meio do caminho. Entre entrar na sala e o menu, agr tá bonitinho, mas n lembro dele ser um código separado antes. FDS, tá foda e funcional, qm liga pra origem?
+- figurinhas e comando torre fora do ar, vou consertar.
+- Só foi necessário remodelar o app.py e os html pra consertar, ou o código tá um macarrão, ou eu fiz mt merda e n lembro.
+- Mobile tem estilo próprio e pc segue o mesmo, tudo perfeito.
+- comando !torre só tá desconectando, n tá apagando o chat, mas fds, vou arrumar isso na próx atualização(esqueci da próx atuliazação, tô escrevendo isso dia 22/01 kkkkkk).
+
+
+bugfixes 22/01/2026:
+- fui tentar colocar no github, mas ao testar por algum caralho de motivo tá dando erro e não está encontrando o index.html na hora de ligar o server.
+- revisão no app.py.
+- mesmo colocando TODOS os templates fora da paste templates literalmente soltos do lado do app.py não está dando certo, terei de usar o chatgpt pra ler esses códigos de erro.
+- PQP, PQP, PQP. O chatgpt leu tão bem q me resolveu 30min de tentativas e erros em 30sec. No app.py estava escrito "index.HMTL" e não "index.HTML". 
+- Sim, o erro que estava gerando exatas 405 console_logs de erro com jinja e flask se tratava apenas 2 letras com as posições invertidas. Entrem para a informática, é divertido.

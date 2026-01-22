@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <header class="netchat">NetChat</header>
+
+    <!-- settings -->
+    <div class="settings-btn" onclick="toggleSettings()">⚙</div>
+
+    <div id="settingsMenu">
+        <button onclick="setTheme('theme-red')">Vermelho</button>
+        <button onclick="setTheme('theme-green')">Verde</button>
+        <button onclick="setTheme('theme-yellow')">Amarelo</button>
+        <button onclick="setTheme('theme-white')">Branco</button>
+    </div>
+
+    <a href="/eternidade/{{ nome }}">Voltar</a> |
+    <a href="/">Início</a>
+
+    <h2>{{ titulo }}</h2>
+
+    {% if erro %}
+        <p style="color:yellow;">{{ erro }}</p>
+    {% endif %}
+
+    {% if not request.args.get("auth") %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Seu nome">
+            <input type="password" name="senha" placeholder="Senha (3 dígitos)">
+            <button type="submit">Entrar</button>
+        </form>
+
+    {% else %}
+
+        <div id="messages" class="box"></div>
+
+        <input id="fileInput" type="file">
+        <button id="sendFile">Enviar arquivo</button>
+        <br>
+
+        <input id="msg" placeholder="Mensagem...">
+        <button id="send">Enviar</button>
+
+        <!-- terminal -->
+        <div id="terminal"></div>
+
+        <script>
+            const sala = "{{ nome }}-{{ canal }}";
+            const username = "{{ request.args.get('auth') }}";
+            const socket = io();
+
+            // settings + theme
+            function toggleSettings() {
+                const m = document.getElementById('settingsMenu');
+                m.style.display = m.style.display === 'block' ? 'none' : 'block';
+            }
+
+            function setTheme(t) {
+                document.body.className = t;
+                localStorage.setItem('theme', t);
+            }
+
+            window.onload = () =>
+                document.body.className = localStorage.getItem('theme') || 'theme-red';
+
+
+            // join and history
+            socket.emit('join', { sala: sala, username: username });
+
+            socket.on('history', data => {
+                const box = document.getElementById('messages');
+                box.innerHTML = '';
+
+                data.forEach(item => {
+                    if (item.type === 'msg')
+                        box.innerHTML += `<b>${item.username}:</b> ${item.text}<br>`;
+                    else if (item.type === 'sys')
+                        box.innerHTML += `<i>${item.text}</i><br>`;
+                    else if (item.type === 'file')
+                        box.innerHTML += `<b>${item.username}:</b> [arquivo] ${item.filename}<br>`;
+                });
+
+                box.scrollTop = box.scrollHeight;
+            });
+
+
+            socket.on('mensagem', data => {
+                const box = document.getElementById('messages');
+
+                if (data.type === 'msg')
+                    box.innerHTML += `<b>${data.username}:</b> ${data.text}<br>`;
+                else if (data.type === 'sys')
+                    box.innerHTML += `<i>${data.text}</i><br>`;
+                else if (data.type === 'file')
+                    box.innerHTML += `<b>${data.username}:</b> [arquivo] ${data.filename}<br>`;
+
+                box.scrollTop = box.scrollHeight;
+            });
+
+
+            // !torre
+            socket.on('system_command', d => {
+                if (d.cmd === '!torre') {
+                    document.getElementById('messages').innerHTML = '';
+                    alert(d.msg || 'Sala limpa.');
+                    socket.disconnect();
+                    window.location = '/';
+                }
+            });
+
+
+            // send text
+            document.getElementById('send').onclick = () => {
+                const texto = document.getElementById('msg').value;
+                socket.emit('mensagem', {
+                    sala: sala,
+                    user: username,
+                    texto: texto
+                });
+                document.getElementById('msg').value = '';
+            };
+
+
+            // send file
+            document.getElementById('sendFile').onclick = () => {
+                const f = document.getElementById('fileInput').files[0];
+                if (!f) return alert('Escolha um arquivo.');
+
+                const fd = new FormData();
+                fd.append('file', f);
+                fd.append('room', sala);
+                fd.append('username', username);
+
+                fetch('/upload', {
+                    method: 'POST',
+                    body: fd
+                })
+                .then(r => r.text())
+                .then(t => console.log(t))
+                .catch(e => console.error(e));
+            };
+
+
+            // mini terminal informativo
+            const term = document.getElementById('terminal');
+            term.innerHTML = "Terminal: digite comandos no chat como '/help' (estético).";
+        </script>
+
+    {% endif %}
+</body>
+</html>

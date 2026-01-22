@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <header class="netchat">NetChat</header>
+
+    <!-- settings -->
+    <div class="settings-btn" onclick="toggleSettings()">⚙</div>
+
+    <div id="settingsMenu">
+        <button onclick="setTheme('theme-red')">Vermelho</button>
+        <button onclick="setTheme('theme-green')">Verde</button>
+        <button onclick="setTheme('theme-yellow')">Amarelo</button>
+        <button onclick="setTheme('theme-white')">Branco</button>
+    </div>
+
+    <h1>Chats Normais</h1>
+
+    <a href="/">Início</a>
+    <br><br>
+
+    <form action="/join_channel" method="POST">
+        <input type="text" name="username" placeholder="Seu nome">
+        <input type="text" name="channel_code" placeholder="Código da sala">
+        <button type="submit">Entrar</button>
+    </form>
+
+    <script>
+        function toggleSettings() {
+            const m = document.getElementById('settingsMenu');
+            m.style.display = m.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function setTheme(t) {
+            document.body.className = t;
+            localStorage.setItem('theme', t);
+        }
+
+        window.onload = () =>
+            document.body.className = localStorage.getItem('theme') || 'theme-red';
+    </script>
+</body>
+</html>

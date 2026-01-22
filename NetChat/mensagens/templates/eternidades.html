@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>Eternidades</title>
+</head>
+<body>
+  <header class="netchat">NetChat</header>
+
+  <div class="settings-btn" onclick="toggleSettings()">⚙</div>
+  <div id="settingsMenu" class="settings-menu">
+      <button onclick="setTheme('theme-red')">Vermelho</button>
+      <button onclick="setTheme('theme-green')">Verde</button>
+      <button onclick="setTheme('theme-yellow')">Amarelo</button>
+      <button onclick="setTheme('theme-white')">Branco</button>
+  </div>
+
+  <main class="container">
+    <h1 class="section-title">ETERNIDADES</h1>
+    <a href="/">Início</a>
+    <section class="card">
+      {% for nome, dados in eternidades.items() %}
+        <a class="channel-link" href="/eternidade/{{ nome }}">{{ dados.name }}</a><br>
+      {% endfor %}
+    </section>
+  </main>
+
+  <script>
+  function toggleSettings(){ const m=document.getElementById('settingsMenu'); m.style.display = m.style.display==='block' ? 'none':'block'; }
+  function setTheme(t){ document.documentElement.className = t; localStorage.setItem('theme', t); }
+  window.onload = () => document.documentElement.className = localStorage.getItem('theme') || 'theme-red';
+  </script>
+</body>
+</html>
