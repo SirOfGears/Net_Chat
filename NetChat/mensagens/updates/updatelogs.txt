@@ -31,7 +31,6 @@ planos para a v.0.45(fazer até QUINTA):
 - Tirar a parte q fala dos pcs dos laboratórios;(feito)
 - Tirar a parte q fala q n pode divulgação de dados confidenciais;(feito)
 - Implementar(ou tentar) a questão de mudança de tema;
-- Implementar a aba "Eternidade" com 3 canais exemplo;
 - Colocar online.(feito pelo Ngrok)
 
 26/11/2025:
@@ -49,8 +48,8 @@ Canal 3 → Receitas (Belzebub)
 CSS reorganizado e reintegrado ao Flask.
 Botão de configurações de tema restaurado.
 Comando global !torre adicionado:
-Desconecta todos.
-Limpa o chat.
+Desconecta todos;
+Limpa o chat;
 Reinicia a sala.
 
 v0.49:
@@ -69,12 +68,12 @@ v0.52: (01/12/2025)
 - figurinhas e comando torre fora do ar, vou consertar.
 - Só foi necessário remodelar o app.py e os html pra consertar, ou o código tá um macarrão, ou eu fiz mt merda e n lembro.
 - Mobile tem estilo próprio e pc segue o mesmo, tudo perfeito.
-- comando !torre só tá desconectando, n tá apagando o chat, mas fds, vou arrumar isso na próx atualização(esqueci da próx atuliazação, tô escrevendo isso dia 22/01 kkkkkk).
+- comando !torre só tá desconectando, n tá apagando o chat, mas fds, vou arrumar isso na próx atualização(esqueci da próx atuliazação, tô escrevendo isso dia 22/01/2026 kkkkkk).
 
 
 bugfixes 22/01/2026:
 - fui tentar colocar no github, mas ao testar por algum caralho de motivo tá dando erro e não está encontrando o index.html na hora de ligar o server.
 - revisão no app.py.
 - mesmo colocando TODOS os templates fora da paste templates literalmente soltos do lado do app.py não está dando certo, terei de usar o chatgpt pra ler esses códigos de erro.
-- PQP, PQP, PQP. O chatgpt leu tão bem q me resolveu 30min de tentativas e erros em 30sec. No app.py estava escrito "index.HMTL" e não "index.HTML". 
+- O chatgpt leu tão bem q me resolveu 30min de tentativas e erros em 30sec. No app.py estava escrito "index.HMTL" e não "index.HTML". 
 - Sim, o erro que estava gerando exatas 405 console_logs de erro com jinja e flask se tratava apenas 2 letras com as posições invertidas. Entrem para a informática, é divertido.
