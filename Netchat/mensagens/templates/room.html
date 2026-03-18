@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolher Sala</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            background: #333;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #4a7bff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #3d6ae0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Entrar em uma sala</h1>
+
+    <div class="box">
+        <form action="/chat/" method="get" onsubmit="return goToRoom(event)">
+            <label>Sala:</label>
+            <input type="text" id="room" required placeholder="ex: geral, musica, caos">
+
+            <label>Nome de usuário:</label>
+            <input type="text" id="username" placeholder="opcional">
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <script>
+        function goToRoom(event) {
+            event.preventDefault();
+            const sala = document.getElementById("room").value.trim();
+            const user = document.getElementById("username").value.trim();
+
+            if (!sala) return;
+
+            let url = `/chat/${encodeURIComponent(sala)}`;
+            if (user) url += `?username=${encodeURIComponent(user)}`;
+
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>

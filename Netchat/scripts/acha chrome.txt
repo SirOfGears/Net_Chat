@@ -1,0 +1,15 @@
+@echo off
+setlocal
+
+:: Consulta o caminho do Chrome no Registro do Windows
+for /f "tokens=2,*" %%A in ('reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe" /ve 2^>nul') do set "caminho=%%B"
+
+:: Verifica se encontrou o caminho
+if defined caminho (
+    echo O caminho do Google Chrome e: "%caminho%"
+) else (
+    echo Google Chrome nao encontrado.
+)
+
+:: Aguarda para o usuário ver o resultado
+pause

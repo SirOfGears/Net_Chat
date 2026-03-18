@@ -1,0 +1,4 @@
+@echo off
+cd "caminho até a pasta mensagens"
+python app.py
+pause
