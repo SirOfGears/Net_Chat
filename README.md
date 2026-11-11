@@ -17,12 +17,3 @@ Dentro da sala:
 
 Mudança da cor do texto:
 <img width="1868" height="537" alt="image" src="https://github.com/user-attachments/assets/6fbcff0c-7bc2-49a7-8895-47c26c8f1780" />
-
-Aba de Figurinhas:
-<img width="1836" height="577" alt="image" src="https://github.com/user-attachments/assets/8259c5ac-8c20-4a1a-9e4e-dc493841f67e" />
-
-Envio de Figurinhas:(sim, as figurinhas ficam grandes e forçam a descer o chat)
-<img width="1860" height="511" alt="image" src="https://github.com/user-attachments/assets/8c02a70b-c5fc-49d0-8b39-9c8f0b7357a0" />
-
-Após usar o comando "!torre"(comando que limpa a sala e desconecta todos):
-<img width="456" height="139" alt="image" src="https://github.com/user-attachments/assets/7b7d4718-61a1-40d1-b13d-dd85672717f1" />
